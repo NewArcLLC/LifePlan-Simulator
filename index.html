@@ -41,23 +41,15 @@ body{
   line-height:1.6;
 }
 .header{
-  background:var(--accent);
-  color:#fff;
+  background:var(--accent);color:#fff;
   padding:1.25rem 2rem;
-  display:flex;
-  align-items:center;
-  gap:1rem;
-  position:sticky;
-  top:0;
-  z-index:100;
+  display:flex;align-items:center;gap:1rem;
+  position:sticky;top:0;z-index:100;
   box-shadow:var(--shadow-lg);
 }
 .header-icon{
-  width:36px;height:36px;
-  background:rgba(255,255,255,0.15);
-  border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:18px;
+  width:36px;height:36px;background:rgba(255,255,255,0.15);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;
 }
 .header-title{font-family:'DM Serif Display',serif;font-size:1.25rem;letter-spacing:.02em}
 .header-sub{font-size:11px;opacity:.7;margin-top:1px}
@@ -65,152 +57,96 @@ body{
 
 .container{max-width:960px;margin:0 auto;padding:1.5rem 1rem 3rem}
 
-/* Step nav */
 .step-nav{
-  display:flex;
-  gap:3px;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:5px;
-  margin-bottom:1.5rem;
-  overflow-x:auto;
-  box-shadow:var(--shadow);
+  display:flex;gap:3px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:5px;margin-bottom:1.5rem;overflow-x:auto;box-shadow:var(--shadow);
 }
 .sn-btn{
-  flex:1;min-width:80px;
-  padding:7px 6px;
-  font-size:11px;font-weight:500;
-  border:none;border-radius:var(--radius-sm);
-  background:transparent;cursor:pointer;
-  color:var(--text3);
-  transition:all .2s;white-space:nowrap;
-  font-family:'Noto Sans JP',sans-serif;
+  flex:1;min-width:80px;padding:7px 6px;font-size:11px;font-weight:500;
+  border:none;border-radius:var(--radius-sm);background:transparent;cursor:pointer;
+  color:var(--text3);transition:all .2s;white-space:nowrap;font-family:'Noto Sans JP',sans-serif;
 }
 .sn-btn:hover{background:var(--surface2);color:var(--text2)}
 .sn-btn.active{background:var(--accent);color:#fff}
 .sn-btn .step-num{display:block;font-size:9px;margin-bottom:1px;opacity:.7}
 
-/* Sections */
 .section{display:none;animation:fadeIn .2s ease}
 .section.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 
-/* Cards */
 .card{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:1.25rem 1.5rem;
-  margin-bottom:1rem;
-  box-shadow:var(--shadow);
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.25rem 1.5rem;margin-bottom:1rem;box-shadow:var(--shadow);
 }
 .card-title{
-  font-size:13px;font-weight:700;
-  color:var(--accent);
-  margin-bottom:1rem;
-  display:flex;align-items:center;gap:8px;
-  padding-bottom:.75rem;
-  border-bottom:1px solid var(--border);
+  font-size:13px;font-weight:700;color:var(--accent);
+  margin-bottom:1rem;display:flex;align-items:center;gap:8px;
+  padding-bottom:.75rem;border-bottom:1px solid var(--border);
 }
 .card-title svg{flex-shrink:0}
-.badge{
-  font-size:10px;padding:2px 7px;
-  border-radius:999px;font-weight:500;
-}
+.badge{font-size:10px;padding:2px 7px;border-radius:999px;font-weight:500;}
 .badge-req{background:var(--ng-bg);color:var(--ng)}
 .badge-opt{background:var(--surface2);color:var(--text3)}
 
-/* Form grid */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 .fg-full{grid-column:1/-1}
 .form-group{display:flex;flex-direction:column;gap:5px}
 label{font-size:11px;color:var(--text2);font-weight:500}
 input[type=number],input[type=text],select{
-  width:100%;padding:8px 11px;
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  background:var(--bg);
-  color:var(--text);
-  font-size:13px;font-family:inherit;
+  width:100%;padding:8px 11px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--bg);color:var(--text);font-size:13px;font-family:inherit;
   transition:border-color .15s,box-shadow .15s;
 }
 input:focus,select:focus{
-  outline:none;
-  border-color:var(--accent-mid);
-  box-shadow:0 0 0 3px rgba(58,114,192,.1);
-  background:#fff;
+  outline:none;border-color:var(--accent-mid);
+  box-shadow:0 0 0 3px rgba(58,114,192,.1);background:#fff;
 }
 .hint{font-size:10px;color:var(--text3)}
 
-/* Toggle */
 .toggle-row{
   display:flex;align-items:center;justify-content:space-between;
-  padding:10px 0;
-  border-bottom:1px solid var(--border);
+  padding:10px 0;border-bottom:1px solid var(--border);
 }
 .toggle-row:last-child{border-bottom:none}
 .toggle-label{font-size:13px;color:var(--text)}
 .toggle-desc{font-size:11px;color:var(--text3);margin-top:1px}
 .toggle{position:relative;width:42px;height:24px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0}
-.toggle-slider{
-  position:absolute;cursor:pointer;inset:0;
-  background:var(--border2);border-radius:12px;transition:.2s;
-}
+.toggle-slider{position:absolute;cursor:pointer;inset:0;background:var(--border2);border-radius:12px;transition:.2s;}
 .toggle-slider:before{
-  content:'';position:absolute;
-  width:18px;height:18px;left:3px;top:3px;
-  background:#fff;border-radius:50%;transition:.2s;
-  box-shadow:0 1px 4px rgba(0,0,0,.2);
+  content:'';position:absolute;width:18px;height:18px;left:3px;top:3px;
+  background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.2);
 }
 .toggle input:checked+.toggle-slider{background:var(--accent-mid)}
 .toggle input:checked+.toggle-slider:before{transform:translateX(18px)}
 
-/* Info box */
 .info-box{
-  background:var(--accent-light);
-  border:1px solid #c0d0ea;
-  border-radius:var(--radius-sm);
-  padding:.75rem 1rem;
-  font-size:12px;color:var(--accent);
-  margin-bottom:1rem;
+  background:var(--accent-light);border:1px solid #c0d0ea;border-radius:var(--radius-sm);
+  padding:.75rem 1rem;font-size:12px;color:var(--accent);margin-bottom:1rem;
   display:flex;gap:8px;align-items:flex-start;
 }
 
-/* Buttons */
 .btn-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem;gap:12px}
 .btn{
-  padding:10px 24px;font-size:13px;font-weight:500;
-  border-radius:var(--radius-sm);cursor:pointer;
-  font-family:inherit;transition:all .15s;
-  display:inline-flex;align-items:center;gap:6px;
+  padding:10px 24px;font-size:13px;font-weight:500;border-radius:var(--radius-sm);cursor:pointer;
+  font-family:inherit;transition:all .15s;display:inline-flex;align-items:center;gap:6px;
 }
-.btn-primary{
-  background:var(--accent);color:#fff;
-  border:1px solid var(--accent);
-}
+.btn-primary{background:var(--accent);color:#fff;border:1px solid var(--accent);}
 .btn-primary:hover{background:#163d72;border-color:#163d72}
-.btn-secondary{
-  background:var(--surface);color:var(--text2);
-  border:1px solid var(--border);
-}
+.btn-secondary{background:var(--surface);color:var(--text2);border:1px solid var(--border);}
 .btn-secondary:hover{background:var(--surface2)}
 .btn-run{
   background:linear-gradient(135deg,#1e4d8c,#3a72c0);
-  color:#fff;border:none;padding:12px 32px;
-  font-size:14px;
+  color:#fff;border:none;padding:12px 32px;font-size:14px;
   box-shadow:0 4px 16px rgba(30,77,140,.3);
 }
 .btn-run:hover{box-shadow:0 6px 20px rgba(30,77,140,.4);transform:translateY(-1px)}
 
-/* Result */
 .verdict{
-  padding:12px 16px;border-radius:var(--radius);
-  font-size:13px;font-weight:500;
-  margin-bottom:1rem;display:flex;gap:10px;align-items:flex-start;
-  border:1px solid;
+  padding:12px 16px;border-radius:var(--radius);font-size:13px;font-weight:500;
+  margin-bottom:1rem;display:flex;gap:10px;align-items:flex-start;border:1px solid;
 }
 .verdict-ok{background:var(--ok-bg);color:var(--ok);border-color:#9dd9b8}
 .verdict-warn{background:var(--warn-bg);color:var(--warn);border-color:#f0c96a}
@@ -219,11 +155,8 @@ input:focus,select:focus{
 
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1rem}
 .metric{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:1rem 1.25rem;
-  box-shadow:var(--shadow);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1rem 1.25rem;box-shadow:var(--shadow);
 }
 .metric-label{font-size:10px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
 .metric-value{font-size:22px;font-weight:700;color:var(--text);line-height:1.1}
@@ -241,26 +174,15 @@ input:focus,select:focus{
 
 .events-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem}
 .ev-chip{
-  font-size:11px;padding:3px 10px;
-  border-radius:999px;
-  background:var(--accent-light);
-  color:var(--accent);
-  border:1px solid #c0d0ea;
-  font-weight:500;
+  font-size:11px;padding:3px 10px;border-radius:999px;
+  background:var(--accent-light);color:var(--accent);border:1px solid #c0d0ea;font-weight:500;
 }
 
-.table-wrap{
-  overflow-x:auto;
-  max-height:400px;overflow-y:auto;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-}
+.table-wrap{overflow-x:auto;max-height:400px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--radius);}
 table{width:100%;border-collapse:collapse;font-size:12px}
 thead th{
-  position:sticky;top:0;
-  background:var(--accent);color:#fff;
-  padding:8px 12px;font-weight:500;font-size:11px;
-  text-align:right;white-space:nowrap;
+  position:sticky;top:0;background:var(--accent);color:#fff;
+  padding:8px 12px;font-weight:500;font-size:11px;text-align:right;white-space:nowrap;
 }
 thead th:first-child{text-align:left}
 tbody td{padding:6px 12px;border-bottom:1px solid var(--border);text-align:right;color:var(--text)}
@@ -271,44 +193,29 @@ tbody tr.row-negative td{color:var(--ng)!important;background:var(--ng-bg)}
 tbody tr.row-pension td{color:var(--warn)!important}
 tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng-bg)}
 
-/* Assumption bar */
 .assumption-bar{
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  padding:.65rem 1rem;
-  display:flex;flex-wrap:wrap;gap:16px;
-  font-size:11px;color:var(--text2);
-  margin-bottom:1rem;
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:.65rem 1rem;display:flex;flex-wrap:wrap;gap:16px;
+  font-size:11px;color:var(--text2);margin-bottom:1rem;
 }
 .assm-item{display:flex;gap:5px;align-items:center}
 .assm-key{color:var(--text3)}
 .assm-val{font-weight:700;color:var(--accent)}
 
-/* Section header */
-.sec-header{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:1.25rem;
-}
+.sec-header{display:flex;align-items:center;gap:10px;margin-bottom:1.25rem;}
 .sec-header-num{
-  width:28px;height:28px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  font-size:12px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .sec-header-title{font-size:16px;font-weight:700;color:var(--text)}
 .sec-header-desc{font-size:11px;color:var(--text3)}
-
-/* Separator line */
 .sep{border:none;border-top:1px solid var(--border);margin:1rem 0}
 
-/* Print */
 @media print{
   .step-nav,.btn-row,.header{display:none!important}
   .section{display:block!important}
   body{background:#fff}
 }
-
 @media(max-width:600px){
   .form-grid,.form-grid-3,.metrics{grid-template-columns:1fr 1fr}
   .header-right{display:none}
@@ -332,7 +239,6 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
 
 <div class="container">
 
-  <!-- Step Nav -->
   <div class="step-nav" id="stepNav">
     <button class="sn-btn active" onclick="goStep(0)"><span class="step-num">STEP 1</span>基本情報</button>
     <button class="sn-btn" onclick="goStep(1)"><span class="step-num">STEP 2</span>収入</button>
@@ -343,7 +249,7 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
     <button class="sn-btn" onclick="goStep(6)"><span class="step-num">RESULT</span>シミュレーション</button>
   </div>
 
-  <!-- STEP 0: 基本情報 -->
+  <!-- ======== STEP 0: 基本情報 ======== -->
   <div class="section active" id="sec0">
     <div class="sec-header">
       <div class="sec-header-num">1</div>
@@ -352,17 +258,14 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">世帯主・配偶者の年齢と家族構成を入力してください</div>
       </div>
     </div>
-
     <div class="info-box">
       <span>📋</span>
       <span>太枠の項目が<strong>必須（コア10項目）</strong>です。余裕があれば任意項目も入力してください。</span>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        家族構成
-        <span class="badge badge-req">必須</span>
+        家族構成 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -374,13 +277,12 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
           <input type="number" id="ageSpouse" value="33" min="18" max="65">
         </div>
         <div class="form-group">
-          <label>子どもの人数</label>
-          <select id="numChildren">
+          <label>現在の子どもの人数</label>
+          <select id="numChildren" onchange="updateChildFields()">
             <option value="0">0人（子なし）</option>
             <option value="1">1人</option>
             <option value="2" selected>2人</option>
             <option value="3">3人</option>
-            <option value="4">4人</option>
           </select>
         </div>
         <div class="form-group">
@@ -389,24 +291,27 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
             <option value="0" selected>なし</option>
             <option value="1">1人</option>
             <option value="2">2人</option>
+            <option value="3">3人</option>
           </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="child1group">
           <label>第1子の現在年齢（歳）</label>
           <input type="number" id="child1age" value="3" min="0" max="22">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="child2group">
           <label>第2子の現在年齢（歳）</label>
           <input type="number" id="child2age" value="0" min="0" max="22">
         </div>
+        <div class="form-group" id="child3group" style="display:none">
+          <label>第3子の現在年齢（歳）</label>
+          <input type="number" id="child3age" value="0" min="0" max="22">
+        </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        働き方
-        <span class="badge badge-req">必須</span>
+        働き方 <span class="badge badge-req">必須</span>
       </div>
       <div class="toggle-row">
         <div>
@@ -445,12 +350,10 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        現在の居住形態
-        <span class="badge badge-opt">任意</span>
+        現在の居住形態 <span class="badge badge-opt">任意</span>
       </div>
       <div class="form-group">
         <select id="housing">
@@ -460,14 +363,13 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </select>
       </div>
     </div>
-
     <div class="btn-row">
       <div></div>
       <button class="btn btn-primary" onclick="goStep(1)">収入を入力 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
-  <!-- STEP 1: 収入 -->
+  <!-- ======== STEP 1: 収入 ======== -->
   <div class="section" id="sec1">
     <div class="sec-header">
       <div class="sec-header-num">2</div>
@@ -476,12 +378,10 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">手取り年収をベースに入力してください</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        現在の収入
-        <span class="badge badge-req">必須</span>
+        現在の収入 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -499,12 +399,10 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        老後収入（年金）
-        <span class="badge badge-opt">任意</span>
+        老後収入（年金） <span class="badge badge-opt">任意</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -519,7 +417,6 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -542,14 +439,13 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(0)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-primary" onclick="goStep(2)">家計・貯蓄を入力 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
-  <!-- STEP 2: 家計・貯蓄 -->
+  <!-- ======== STEP 2: 家計・貯蓄 ======== -->
   <div class="section" id="sec2">
     <div class="sec-header">
       <div class="sec-header-num">3</div>
@@ -558,32 +454,28 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">毎月の支出と現在の貯蓄を確認します</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        月間支出
-        <span class="badge badge-req">必須</span>
+        月間支出 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
           <label>月間生活費 合計（万円）</label>
           <input type="number" id="monthlyExpense" value="25" min="0">
-          <span class="hint">食費・光熱費・通信費・娯楽費など</span>
+          <span class="hint">食費・光熱費・通信費・娯楽費など。子ども独立後に自動8%減額</span>
         </div>
         <div class="form-group">
           <label>現在の住宅費（月額・万円）</label>
           <input type="number" id="currentHousing" value="12" min="0">
-          <span class="hint">家賃・管理費・駐車場など。購入後は0</span>
+          <span class="hint">家賃・管理費・駐車場など。購入後は自動的に0</span>
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        現在の資産・貯蓄ペース
-        <span class="badge badge-req">必須</span>
+        現在の資産・貯蓄ペース <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -594,18 +486,17 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="form-group">
           <label>月間平均貯蓄額（万円）</label>
           <input type="number" id="monthlySavings" value="5" min="0">
-          <span class="hint">毎月の純増額。貯蓄ゼロの場合は0</span>
+          <span class="hint">毎月の積立額。65歳（収入ゼロ）で自動停止します</span>
         </div>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-primary" onclick="goStep(3)">住宅条件を入力 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
-  <!-- STEP 3: 住宅条件 -->
+  <!-- ======== STEP 3: 住宅条件 ======== -->
   <div class="section" id="sec3">
     <div class="sec-header">
       <div class="sec-header-num">4</div>
@@ -614,12 +505,10 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">希望物件と資金計画を入力してください</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-        物件・資金計画
-        <span class="badge badge-req">必須</span>
+        物件・資金計画 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -647,20 +536,24 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        ローン条件
-        <span class="badge badge-req">必須</span>
+        ローン条件 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
+          <!-- ★ 15〜50年・5年刻み -->
           <label>ローン借入期間（年）</label>
           <select id="loanTerm">
+            <option value="15">15年</option>
+            <option value="20">20年</option>
             <option value="25">25年</option>
             <option value="30" selected>30年</option>
             <option value="35">35年</option>
+            <option value="40">40年</option>
+            <option value="45">45年</option>
+            <option value="50">50年</option>
           </select>
         </div>
         <div class="form-group">
@@ -670,14 +563,13 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-primary" onclick="goStep(4)">教育・車を入力 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
-  <!-- STEP 4: 教育・車 -->
+  <!-- ======== STEP 4: 教育・車 ======== -->
   <div class="section" id="sec4">
     <div class="sec-header">
       <div class="sec-header-num">5</div>
@@ -686,12 +578,10 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">将来の大きな支出を設定します</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-        教育方針
-        <span class="badge badge-req">必須</span>
+        教育方針 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group fg-full">
@@ -705,22 +595,21 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="form-group">
           <label>大学進学を想定するか</label>
           <select id="university">
-            <option value="yes" selected>進学を想定する</option>
-            <option value="no">進学は想定しない</option>
+            <option value="yes" selected>進学を想定する（22歳で独立）</option>
+            <option value="no">進学しない（18歳で独立）</option>
           </select>
         </div>
       </div>
       <hr class="sep">
-      <div style="font-size:11px;color:var(--text3);margin-top:.5rem">
-        ▸ 公立中心：小学校15万/中学18万/高校20万/大学150万（年） ▸ 私立中心：小80万/中120万/高130万/大150万（年）
+      <div style="font-size:11px;color:var(--text3);margin-top:.5rem;line-height:1.9">
+        ▸ 公立中心：小学校15万/中学18万/高校20万/大学150万（年）&nbsp;&nbsp;▸ 私立中心：小80万/中120万/高130万/大150万（年）<br>
+        ▸ <strong style="color:var(--accent)">子ども独立時</strong>に月間生活費を<strong style="color:var(--accent)">1人あたり8%自動削減</strong>（大学進学なら22歳、しない場合は18歳）
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        車の買い替え
-        <span class="badge badge-opt">任意</span>
+        車の買い替え <span class="badge badge-opt">任意</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -749,14 +638,13 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(3)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-primary" onclick="goStep(5)">保険・ローンを入力 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
-  <!-- STEP 5: 保険・ローン -->
+  <!-- ======== STEP 5: 保険・ローン ======== -->
   <div class="section" id="sec5">
     <div class="sec-header">
       <div class="sec-header-num">6</div>
@@ -765,12 +653,10 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">固定的な支出を確認します</div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        固定的支出
-        <span class="badge badge-req">必須</span>
+        固定的支出 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -783,9 +669,31 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
           <input type="number" id="otherLoan" value="2" min="0">
           <span class="hint">自動車・教育・カードローンなど</span>
         </div>
+        <!-- ★ その他ローン終了年 -->
+        <div class="form-group fg-full">
+          <label>その他ローンの返済終了時期</label>
+          <select id="otherLoanEndYear">
+            <option value="999">終了なし（ずっと継続）</option>
+            <option value="1">1年後に完済</option>
+            <option value="2">2年後に完済</option>
+            <option value="3">3年後に完済</option>
+            <option value="4">4年後に完済</option>
+            <option value="5">5年後に完済</option>
+            <option value="6">6年後に完済</option>
+            <option value="7">7年後に完済</option>
+            <option value="8">8年後に完済</option>
+            <option value="9">9年後に完済</option>
+            <option value="10">10年後に完済</option>
+            <option value="12">12年後に完済</option>
+            <option value="15">15年後に完済</option>
+            <option value="20">20年後に完済</option>
+            <option value="25">25年後に完済</option>
+            <option value="30">30年後に完済</option>
+          </select>
+          <span class="hint">完済後はその他ローン返済額が0円になります</span>
+        </div>
       </div>
     </div>
-
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(4)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-run" onclick="goStep(6)">
@@ -795,7 +703,7 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
     </div>
   </div>
 
-  <!-- STEP 6: 結果 -->
+  <!-- ======== STEP 6: 結果 ======== -->
   <div class="section" id="sec6">
     <div class="sec-header">
       <div class="sec-header-num">✓</div>
@@ -832,11 +740,18 @@ function goStep(n) {
 
 function toggleDualFields() {
   const on = document.getElementById('dualIncome').checked;
-  const ds = document.getElementById('dualSwitch');
+  document.getElementById('dualSwitch').style.display = on ? 'block' : 'none';
   const sg = document.getElementById('spouseIncGroup');
-  ds.style.display = on ? 'block' : 'none';
   sg.style.opacity = on ? '1' : '0.4';
   sg.querySelector('input').disabled = !on;
+}
+
+// ★ 子どもの人数に応じてフィールド表示切替
+function updateChildFields() {
+  const n = parseInt(document.getElementById('numChildren').value) || 0;
+  document.getElementById('child1group').style.display = n >= 1 ? '' : 'none';
+  document.getElementById('child2group').style.display = n >= 2 ? '' : 'none';
+  document.getElementById('child3group').style.display = n >= 3 ? '' : 'none';
 }
 
 function calcMortgage(principal, annualRate, years) {
@@ -867,108 +782,134 @@ function eduCostForChild(policy, uni, childAgeNow, y) {
   return cost;
 }
 
-function fmt(n) { return Math.round(n).toLocaleString('ja-JP'); }
-function fmtSign(n) { const r = Math.round(n); return (r >= 0 ? '+' : '') + r.toLocaleString('ja-JP'); }
+function fmt(n)    { return Math.round(n).toLocaleString('ja-JP'); }
+function fmtSign(n){ const r = Math.round(n); return (r >= 0 ? '+' : '') + r.toLocaleString('ja-JP'); }
 
 function runSimulation() {
-  const v = id => document.getElementById(id);
-  const n = id => parseFloat(v(id).value) || 0;
-  const i = id => parseInt(v(id).value) || 0;
+  const v  = id => document.getElementById(id);
+  const nv = id => parseFloat(v(id).value) || 0;
+  const iv = id => parseInt(v(id).value)   || 0;
 
-  const ageMain = i('ageMain') || 35;
-  const numChildren = i('numChildren');
-  const child1 = i('child1age');
-  const child2 = i('child2age');
-  const futureKids = i('futureChildren');
-  const dualIncome = v('dualIncome').checked;
-  const workSwitch = i('workSwitch');
-  const workReturn = i('workReturn');
-  const incMain = n('incMain');
-  const incSpouse = n('incSpouse');
-  const bonus = n('bonus');
-  const pensionMain = n('pensionMain') * 12;
-  const pensionSpouse = n('pensionSpouse') * 12;
-  const inflation = n('inflation') / 100 || 0.02;
-  const salaryGrowth = n('salaryGrowth') / 100 || 0.01;
-  const monthlyExpense = n('monthlyExpense');
-  const currentHousing = n('currentHousing');
-  let assets = n('savings');
-  const propPrice = n('propertyPrice');
-  const downPayment = n('downPayment');
-  const parentGift = n('parentGift');
-  const purchaseYear = i('purchaseYear');
-  const loanTerm = i('loanTerm') || 30;
-  const rate = n('interestRate');
-  const eduPolicy = v('educationPolicy').value;
-  const uni = v('university').value;
-  const carReplace = i('carReplace');
-  const carBudget = n('carBudget');
-  const carCycle = parseInt(v('carCycle').value) || 7;
-  const insurance = n('insurance');
-  const otherLoan = n('otherLoan');
+  const ageMain        = iv('ageMain') || 35;
+  const numChildren    = iv('numChildren');
+  const child1         = iv('child1age');
+  const child2         = iv('child2age');
+  const child3         = iv('child3age');          // ★ 第3子
+  const futureKids     = iv('futureChildren');
+  const dualIncome     = v('dualIncome').checked;
+  const workSwitch     = iv('workSwitch');
+  const workReturn     = iv('workReturn');
+  const incMain        = nv('incMain');
+  const incSpouse      = nv('incSpouse');
+  const bonus          = nv('bonus');
+  const pensionMain    = nv('pensionMain') * 12;
+  const pensionSpouse  = nv('pensionSpouse') * 12;
+  const inflation      = nv('inflation') / 100 || 0.02;
+  const salaryGrowth   = nv('salaryGrowth') / 100 || 0.01;
+  const monthlyExpBase = nv('monthlyExpense');
+  const currentHousing = nv('currentHousing');
+  let   assets         = nv('savings');
+  const monthlySavings = nv('monthlySavings');
+  const propPrice      = nv('propertyPrice');
+  const downPayment    = nv('downPayment');
+  const parentGift     = nv('parentGift');
+  const purchaseYear   = iv('purchaseYear');
+  const loanTerm       = iv('loanTerm') || 30;
+  const rate           = nv('interestRate');
+  const eduPolicy      = v('educationPolicy').value;
+  const uni            = v('university').value;
+  const carReplace     = iv('carReplace');
+  const carBudget      = nv('carBudget');
+  const carCycle       = parseInt(v('carCycle').value) || 7;
+  const insurance      = nv('insurance');
+  const otherLoan      = nv('otherLoan');
+  const otherLoanEndY  = parseInt(v('otherLoanEndYear').value) || 999; // ★
 
-  const totalSelf = downPayment + parentGift;
-  const loanAmount = Math.max(0, propPrice - totalSelf);
-  const monthlyMortgage = calcMortgage(loanAmount, rate, loanTerm);
-  const annualMortgage = monthlyMortgage * 12;
-  const simYears = 90 - ageMain;
+  // ★ 子ども独立年齢
+  const independAge = uni === 'yes' ? 22 : 18;
 
-  const rows = [];
+  // 全子どものリスト（現在年齢ベース）、最大3人
+  const allChildAges = [];
+  if (numChildren >= 1) allChildAges.push(child1);
+  if (numChildren >= 2) allChildAges.push(child2);
+  if (numChildren >= 3) allChildAges.push(child3);
+  // 未来の子：出産を現在から −5, −8, −11年前生まれ相当で推定
+  const futureOffsets = [-5, -8, -11];
+  for (let fi = 0; fi < Math.min(futureKids, 3); fi++) {
+    if (allChildAges.length < 3) allChildAges.push(futureOffsets[fi]);
+  }
+  const childList = allChildAges.slice(0, 3);
+
+  // 各子の独立年度インデックス
+  const childIndependY = childList.map(ca => Math.max(0, independAge - ca));
+
+  const totalSelf     = downPayment + parentGift;
+  const loanAmount    = Math.max(0, propPrice - totalSelf);
+  const monthlyMtg    = calcMortgage(loanAmount, rate, loanTerm);
+  const annualMtg     = monthlyMtg * 12;
+  const simYears      = 90 - ageMain;
+
+  const rows   = [];
   const events = {};
   let firstNegYear = null;
-  let minBalance = Infinity;
+  let minBalance   = Infinity;
 
   const addEvent = (y, label) => {
     if (!events[y]) events[y] = [];
-    events[y].push(label);
+    if (!events[y].includes(label)) events[y].push(label);
   };
 
   for (let y = 0; y <= simYears; y++) {
     const age = ageMain + y;
-    const inf = Math.pow(1 + inflation, y);
-    const sg = Math.pow(1 + salaryGrowth, Math.min(y, 65 - ageMain));
+    const inf = Math.pow(1 + inflation,   y);
+    const sg  = Math.pow(1 + salaryGrowth, Math.min(y, 65 - ageMain));
 
-    // Income
+    // ─── 収入 ────────────────────────────────────────
     let income = 0;
     if (age < 65) {
-      const switched = workSwitch > 0 && y >= workSwitch;
-      const returned = switched && workReturn > 0 && y >= (workSwitch + workReturn);
-      const spouseWorks = !switched || returned;
-      const sp = (dualIncome && spouseWorks) ? incSpouse * sg : 0;
-      income = incMain * sg + sp + bonus;
+      const switched     = workSwitch > 0 && y >= workSwitch;
+      const returned     = switched && workReturn > 0 && y >= (workSwitch + workReturn);
+      const spouseWorks  = !switched || returned;
+      const sp           = (dualIncome && spouseWorks) ? incSpouse * sg : 0;
+      income             = incMain * sg + sp + bonus;
     } else {
       income = pensionMain + pensionSpouse;
       if (y === 65 - ageMain) addEvent(y, '🔶 年金収入へ切替');
     }
 
-    // Housing cost
+    // ★ 月間貯蓄上乗せ: 65歳以降は停止
+    const extraSavings = age < 65 ? monthlySavings * 12 : 0;
+
+    // ─── 住宅費 ──────────────────────────────────────
     let housingCost = 0;
     if (y < purchaseYear) {
       housingCost = currentHousing * 12 * inf;
     } else if (y === purchaseYear) {
-      housingCost = annualMortgage;
+      housingCost = annualMtg;
       assets -= totalSelf;
       addEvent(y, '🏠 住宅購入');
     } else if (y > purchaseYear && y < purchaseYear + loanTerm) {
-      housingCost = annualMortgage;
+      housingCost = annualMtg;
     }
 
-    // Education cost
+    // ─── 教育費 ──────────────────────────────────────
     let edu = 0;
-    const childAges = [];
-    if (numChildren >= 1) { childAges.push(child1); edu += eduCostForChild(eduPolicy, uni, child1, y) * inf; }
-    if (numChildren >= 2) { childAges.push(child2); edu += eduCostForChild(eduPolicy, uni, child2, y) * inf; }
-    if (futureKids >= 1) { childAges.push(-5); edu += eduCostForChild(eduPolicy, uni, -5, y) * inf; }
-    if (futureKids >= 2) { childAges.push(-8); edu += eduCostForChild(eduPolicy, uni, -8, y) * inf; }
-    childAges.forEach(ca => {
+    childList.forEach((ca, idx) => {
+      edu += eduCostForChild(eduPolicy, uni, ca, y) * inf;
       const cAge = ca + y;
-      if (cAge === 6) addEvent(y, '🎒 子 小学入学');
-      if (cAge === 12) addEvent(y, '📚 子 中学入学');
-      if (cAge === 15) addEvent(y, '🏫 子 高校入学');
-      if (cAge === 18 && uni === 'yes') addEvent(y, '🎓 子 大学入学');
+      if (cAge === 6)  addEvent(y, `🎒 子${idx+1} 小学入学`);
+      if (cAge === 12) addEvent(y, `📚 子${idx+1} 中学入学`);
+      if (cAge === 15) addEvent(y, `🏫 子${idx+1} 高校入学`);
+      if (cAge === 18 && uni === 'yes') addEvent(y, `🎓 子${idx+1} 大学入学`);
+      if (cAge === independAge) addEvent(y, `🕊 子${idx+1} 独立（${independAge}歳）`);
     });
 
-    // Car cost
+    // ★ 生活費: 子ども独立ごとに8%削減
+    const independCount     = childList.filter((_, idx) => y >= childIndependY[idx]).length;
+    const expReduceFactor   = Math.max(0, 1 - independCount * 0.08);
+    const livingExpense     = monthlyExpBase * 12 * inf * expReduceFactor;
+
+    // ─── 車費 ────────────────────────────────────────
     let carCost = 0;
     if (carReplace < 999) {
       let nextCar = carReplace;
@@ -979,70 +920,68 @@ function runSimulation() {
       }
     }
 
-    const ins = insurance * inf;
-    const loan = otherLoan * 12;
-    const totalExpense = monthlyExpense * 12 * inf + housingCost + edu + ins + loan + carCost;
-    const cf = income - totalExpense;
+    const ins  = insurance * inf;
+
+    // ★ その他ローン: 指定年度以降は0
+    const loan = y < otherLoanEndY ? otherLoan * 12 : 0;
+    if (y === otherLoanEndY) addEvent(y, '💳 その他ローン完済');
+
+    const totalExpense = livingExpense + housingCost + edu + ins + loan + carCost;
+
+    // CF = 給与収入 + 月次積立上乗せ - 総支出
+    const cf = income + extraSavings - totalExpense;
     assets += cf;
 
     if (assets < minBalance) minBalance = assets;
     if (assets < 0 && !firstNegYear) firstNegYear = age;
 
-    const isEvent = !!(events[y] && events[y].length);
     rows.push({
-      y, age, income: Math.round(income),
+      y, age,
+      income:  Math.round(income + extraSavings),
       expense: Math.round(totalExpense),
-      cf: Math.round(cf),
-      assets: Math.round(assets),
-      isEvent,
+      cf:      Math.round(cf),
+      assets:  Math.round(assets),
+      isEvent: !!(events[y] && events[y].length),
       isPension: age >= 65
     });
   }
 
-  // Verdict
+  // ─── 判定 ─────────────────────────────────────────
   let verdictClass, verdictIcon, verdictMsg;
   if (firstNegYear) {
-    verdictClass = 'verdict-ng';
-    verdictIcon = '⚠️';
+    verdictClass = 'verdict-ng'; verdictIcon = '⚠️';
     verdictMsg = `<strong>${firstNegYear}歳頃</strong>に貯蓄残高がマイナスになる見込みです。月々の返済額・頭金の増額・収入アップなどの対策をご検討ください。`;
   } else if (minBalance < 300) {
-    verdictClass = 'verdict-warn';
-    verdictIcon = '⚡';
+    verdictClass = 'verdict-warn'; verdictIcon = '⚡';
     verdictMsg = `90歳まで残高はプラスを維持しますが、最低残高 <strong>${fmt(minBalance)}万円</strong> と余裕が少ない状況です。急な出費に備えた見直しをご検討ください。`;
   } else {
-    verdictClass = 'verdict-ok';
-    verdictIcon = '✅';
+    verdictClass = 'verdict-ok'; verdictIcon = '✅';
     verdictMsg = `90歳まで安定してキャッシュフローを維持できる見込みです（最低残高 <strong>${fmt(minBalance)}万円</strong>）。`;
   }
 
   const finalAssets = rows[rows.length - 1].assets;
-  const monthlyPaymentRounded = Math.round(monthlyMortgage);
   const statusClass = firstNegYear ? 'metric-ng' : minBalance < 300 ? 'metric-warn' : 'metric-ok';
+  const allEvents   = Object.values(events).flat();
+  const evChips     = allEvents.slice(0, 12).map(l => `<div class="ev-chip">${l}</div>`).join('');
 
-  // Event chips
-  const allEvents = Object.values(events).flat();
-  const evChips = allEvents.slice(0, 10).map(l => `<div class="ev-chip">${l}</div>`).join('');
-
-  // Assumption bar
+  const loanEndLabel = otherLoanEndY < 999 ? `${otherLoanEndY}年後に完済` : '継続';
   const assumpBar = `
     <div class="assumption-bar">
-      <div class="assm-item"><span class="assm-key">物価上昇率</span><span class="assm-val">${n('inflation')}%/年</span></div>
-      <div class="assm-item"><span class="assm-key">給与上昇率</span><span class="assm-val">${n('salaryGrowth')}%/年</span></div>
+      <div class="assm-item"><span class="assm-key">物価上昇率</span><span class="assm-val">${nv('inflation')}%/年</span></div>
+      <div class="assm-item"><span class="assm-key">給与上昇率</span><span class="assm-val">${nv('salaryGrowth')}%/年</span></div>
       <div class="assm-item"><span class="assm-key">借入額</span><span class="assm-val">${fmt(loanAmount)}万円</span></div>
-      <div class="assm-item"><span class="assm-key">金利</span><span class="assm-val">${rate}% / ${loanTerm}年</span></div>
-      <div class="assm-item"><span class="assm-key">65歳以降</span><span class="assm-val">年金収入に切替</span></div>
+      <div class="assm-item"><span class="assm-key">金利/期間</span><span class="assm-val">${rate}% / ${loanTerm}年</span></div>
+      <div class="assm-item"><span class="assm-key">子独立後生活費</span><span class="assm-val">1人▲8%</span></div>
+      <div class="assm-item"><span class="assm-key">貯蓄上乗せ</span><span class="assm-val">65歳で停止</span></div>
+      <div class="assm-item"><span class="assm-key">その他ローン</span><span class="assm-val">${loanEndLabel}</span></div>
     </div>`;
 
-  // Table rows (show all events + every 5 years + first/last)
   let tableHTML = '';
   rows.forEach((r, idx) => {
-    const showRow = idx === 0 || idx === rows.length - 1 || r.isEvent || r.isPension && (r.age === 65) || idx % 5 === 0;
-    if (!showRow) return;
+    const show = idx === 0 || idx === rows.length - 1 || r.isEvent || (r.isPension && r.age === 65) || idx % 5 === 0;
+    if (!show) return;
     const evLabel = events[r.y] ? ` ${events[r.y].join(' ')}` : '';
-    let cls = '';
-    if (r.assets < 0) cls = 'row-negative';
-    else if (r.isPension && r.age === 65) cls = 'row-pension';
-    else if (r.isEvent) cls = 'row-event';
+    let cls = r.assets < 0 ? 'row-negative' : (r.isPension && r.age === 65) ? 'row-pension' : r.isEvent ? 'row-event' : '';
     tableHTML += `<tr class="${cls}">
       <td>${r.age}歳${evLabel}</td>
       <td>${fmt(r.income)}</td>
@@ -1058,13 +997,13 @@ function runSimulation() {
     <div class="metrics">
       <div class="metric ${statusClass}">
         <div class="metric-label">月返済額（試算）</div>
-        <div class="metric-value">${fmt(monthlyPaymentRounded)}万円</div>
+        <div class="metric-value">${fmt(Math.round(monthlyMtg))}万円</div>
         <div class="metric-sub">借入${fmt(loanAmount)}万円・${rate}%・${loanTerm}年</div>
       </div>
       <div class="metric">
         <div class="metric-label">90歳時点の貯蓄残高</div>
         <div class="metric-value">${fmt(finalAssets)}万円</div>
-        <div class="metric-sub">現在 ${fmt(n('savings'))}万円 → 90歳時点</div>
+        <div class="metric-sub">現在 ${fmt(nv('savings'))}万円 → 90歳時点</div>
       </div>
       <div class="metric ${statusClass}">
         <div class="metric-label">試算期間中の最低残高</div>
@@ -1099,14 +1038,12 @@ function runSimulation() {
     </div>
   `;
 
-  // Chart
-  const every5 = rows.filter((_, i) => i % 5 === 0 || i === rows.length - 1);
-  const labels = every5.map(r => r.age + '歳');
+  const every5    = rows.filter((_, i) => i % 5 === 0 || i === rows.length - 1);
+  const labels    = every5.map(r => r.age + '歳');
   const assetData = every5.map(r => r.assets);
-  const cfData = every5.map(r => r.cf);
+  const cfData    = every5.map(r => r.cf);
 
   if (cfChart) { cfChart.destroy(); cfChart = null; }
-
   const ctx = document.getElementById('cfChart');
   if (!ctx) return;
 
@@ -1115,38 +1052,24 @@ function runSimulation() {
       labels,
       datasets: [
         {
-          type: 'line',
-          label: '貯蓄残高',
-          data: assetData,
-          borderColor: '#1e4d8c',
-          backgroundColor: 'rgba(30,77,140,0.07)',
-          borderWidth: 2.5,
-          tension: 0.35,
-          pointRadius: 3,
-          pointBackgroundColor: '#1e4d8c',
+          type: 'line', label: '貯蓄残高', data: assetData,
+          borderColor: '#1e4d8c', backgroundColor: 'rgba(30,77,140,0.07)',
+          borderWidth: 2.5, tension: 0.35, pointRadius: 3, pointBackgroundColor: '#1e4d8c',
           yAxisID: 'y'
         },
         {
-          type: 'bar',
-          label: '年間CF',
-          data: cfData,
+          type: 'bar', label: '年間CF', data: cfData,
           backgroundColor: cfData.map(v => v >= 0 ? 'rgba(10,102,64,0.55)' : 'rgba(138,28,28,0.6)'),
-          borderRadius: 3,
-          yAxisID: 'y2'
+          borderRadius: 3, yAxisID: 'y2'
         }
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ctx.dataset.label + ': ' + fmt(ctx.parsed.y) + '万円'
-          }
-        }
+        tooltip: { callbacks: { label: c => c.dataset.label + ': ' + fmt(c.parsed.y) + '万円' } }
       },
       scales: {
         y: {
@@ -1166,8 +1089,9 @@ function runSimulation() {
   });
 }
 
-// Init
+// 初期化
 toggleDualFields();
+updateChildFields();
 </script>
 </body>
 </html>
