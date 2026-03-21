@@ -211,6 +211,51 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
 .sec-header-desc{font-size:11px;color:var(--text3)}
 .sep{border:none;border-top:1px solid var(--border);margin:1rem 0}
 
+/* ── 生活費内訳 ── */
+.mode-btn{
+  padding:6px 14px;font-size:12px;font-weight:500;
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  background:var(--surface);color:var(--text2);
+  cursor:pointer;font-family:inherit;transition:all .15s;
+}
+.mode-btn-active{
+  background:var(--accent);color:#fff;border-color:var(--accent);
+}
+.expense-grid{display:flex;flex-direction:column;gap:0;margin-bottom:1rem}
+.exp-row{
+  display:flex;align-items:center;gap:10px;
+  padding:7px 0;
+  border-bottom:1px solid var(--border);
+}
+.exp-row:last-child{border-bottom:none}
+.exp-icon{font-size:15px;width:22px;text-align:center;flex-shrink:0}
+.exp-label{font-size:12px;color:var(--text2);flex:1;min-width:0}
+.exp-input-wrap{display:flex;align-items:center;gap:5px;flex-shrink:0}
+.exp-input-wrap input{
+  width:72px;padding:5px 8px;font-size:13px;text-align:right;
+}
+.exp-unit{font-size:11px;color:var(--text3);white-space:nowrap}
+.exp-total-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--accent-light);border:1px solid #c0d0ea;
+  border-radius:var(--radius-sm);padding:.65rem 1rem;
+  margin-bottom:.75rem;
+}
+.exp-total-left{display:flex;flex-direction:column;gap:1px}
+.exp-total-label{font-size:12px;font-weight:700;color:var(--accent)}
+.exp-total-hint{font-size:10px;color:var(--text3)}
+.exp-total-right{display:flex;align-items:baseline;gap:4px}
+.exp-total-num{font-size:24px;font-weight:700;color:var(--accent)}
+.exp-total-unit{font-size:12px;color:var(--text2)}
+.exp-bar-wrap{
+  display:flex;height:10px;border-radius:5px;overflow:hidden;
+  margin-bottom:.6rem;background:var(--surface2);
+}
+.exp-bar-seg{height:100%;transition:width .3s ease;min-width:0}
+.exp-legend-row{display:flex;flex-wrap:wrap;gap:6px 12px;font-size:10px;color:var(--text2)}
+.exp-legend-item{display:flex;align-items:center;gap:4px}
+.exp-legend-item span{display:inline-block;width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
 @media print{
   .step-nav,.btn-row,.header{display:none!important}
   .section{display:block!important}
@@ -454,24 +499,137 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         <div class="sec-header-desc">毎月の支出と現在の貯蓄を確認します</div>
       </div>
     </div>
+
+    <!-- 住宅費（独立カード） -->
     <div class="card">
       <div class="card-title">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        月間支出 <span class="badge badge-req">必須</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        住宅費 <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
-          <label>月間生活費 合計（万円）</label>
-          <input type="number" id="monthlyExpense" value="25" min="0">
-          <span class="hint">食費・光熱費・通信費・娯楽費など。子ども独立後に自動8%減額</span>
-        </div>
-        <div class="form-group">
           <label>現在の住宅費（月額・万円）</label>
-          <input type="number" id="currentHousing" value="12" min="0">
-          <span class="hint">家賃・管理費・駐車場など。購入後は自動的に0</span>
+          <input type="number" id="currentHousing" value="12" min="0" step="0.1">
+          <span class="hint">家賃・管理費・駐車場など。住宅購入後は自動的に0になります</span>
         </div>
       </div>
     </div>
+
+    <!-- 生活費内訳カード -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        月間生活費の内訳 <span class="badge badge-req">必須</span>
+        <span style="margin-left:auto;font-size:11px;font-weight:400;color:var(--text3)">入力すると合計が自動反映されます</span>
+      </div>
+
+      <!-- 入力モード切替 -->
+      <div style="display:flex;gap:6px;margin-bottom:1rem;">
+        <button id="modeDetailBtn" class="mode-btn mode-btn-active" onclick="setExpenseMode('detail')">内訳を入力する</button>
+        <button id="modeTotalBtn"  class="mode-btn" onclick="setExpenseMode('total')">合計だけ入力する</button>
+      </div>
+
+      <!-- 内訳モード -->
+      <div id="expenseDetailMode">
+        <div class="expense-grid">
+          <div class="exp-row">
+            <span class="exp-icon">🛒</span>
+            <span class="exp-label">食費</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_food" value="6" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">💡</span>
+            <span class="exp-label">光熱費・水道</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_utility" value="2" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">📱</span>
+            <span class="exp-label">通信費</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_comm" value="1" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">👗</span>
+            <span class="exp-label">被服・日用品</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_clothes" value="1.5" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🎮</span>
+            <span class="exp-label">娯楽・交際費</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_leisure" value="2" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🚃</span>
+            <span class="exp-label">交通費</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_transport" value="1" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🏥</span>
+            <span class="exp-label">医療・衛生費</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_medical" value="0.5" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">📚</span>
+            <span class="exp-label">習い事・自己啓発</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_education" value="0.5" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">✏️</span>
+            <span class="exp-label">その他・雑費</span>
+            <div class="exp-input-wrap"><input type="number" id="exp_other" value="1.5" min="0" step="0.1" oninput="calcExpTotal()"><span class="exp-unit">万円</span></div>
+          </div>
+        </div>
+
+        <!-- 合計表示バー -->
+        <div class="exp-total-bar">
+          <div class="exp-total-left">
+            <span class="exp-total-label">月間生活費 合計</span>
+            <span class="exp-total-hint">（住宅費・保険・ローン除く）</span>
+          </div>
+          <div class="exp-total-right">
+            <span id="expTotalDisp" class="exp-total-num">16.0</span>
+            <span class="exp-total-unit">万円/月</span>
+          </div>
+        </div>
+        <div class="exp-bar-wrap">
+          <div id="expBarFood"      class="exp-bar-seg" style="background:#3a72c0" title="食費"></div>
+          <div id="expBarUtility"   class="exp-bar-seg" style="background:#0a6640" title="光熱費"></div>
+          <div id="expBarComm"      class="exp-bar-seg" style="background:#8a5a00" title="通信費"></div>
+          <div id="expBarClothes"   class="exp-bar-seg" style="background:#6b3a8c" title="被服・日用品"></div>
+          <div id="expBarLeisure"   class="exp-bar-seg" style="background:#c0522a" title="娯楽"></div>
+          <div id="expBarTransport" class="exp-bar-seg" style="background:#1a7a6e" title="交通費"></div>
+          <div id="expBarMedical"   class="exp-bar-seg" style="background:#8a1c1c" title="医療費"></div>
+          <div id="expBarEducation" class="exp-bar-seg" style="background:#4a6e1c" title="習い事"></div>
+          <div id="expBarOther"     class="exp-bar-seg" style="background:#9b9590" title="その他"></div>
+        </div>
+        <div class="exp-legend-row">
+          <span class="exp-legend-item"><span style="background:#3a72c0"></span>食費</span>
+          <span class="exp-legend-item"><span style="background:#0a6640"></span>光熱費</span>
+          <span class="exp-legend-item"><span style="background:#8a5a00"></span>通信費</span>
+          <span class="exp-legend-item"><span style="background:#6b3a8c"></span>被服・日用品</span>
+          <span class="exp-legend-item"><span style="background:#c0522a"></span>娯楽</span>
+          <span class="exp-legend-item"><span style="background:#1a7a6e"></span>交通費</span>
+          <span class="exp-legend-item"><span style="background:#8a1c1c"></span>医療費</span>
+          <span class="exp-legend-item"><span style="background:#4a6e1c"></span>習い事</span>
+          <span class="exp-legend-item"><span style="background:#9b9590"></span>その他</span>
+        </div>
+      </div>
+
+      <!-- 合計のみモード -->
+      <div id="expenseTotalMode" style="display:none">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>月間生活費 合計（万円）</label>
+            <input type="number" id="monthlyExpenseDirect" value="16" min="0" step="0.1" oninput="syncDirectTotal()">
+            <span class="hint">食費・光熱費・通信費・娯楽費など住宅費除く合計</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 隠しフィールド: シミュレーションに使う合計 -->
+      <input type="hidden" id="monthlyExpense" value="16">
+    </div>
+
+    <!-- 貯蓄 -->
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -490,6 +648,7 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
+
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(1)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-primary" onclick="goStep(3)">住宅条件を入力 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
@@ -752,6 +911,41 @@ function updateChildFields() {
   document.getElementById('child1group').style.display = n >= 1 ? '' : 'none';
   document.getElementById('child2group').style.display = n >= 2 ? '' : 'none';
   document.getElementById('child3group').style.display = n >= 3 ? '' : 'none';
+}
+
+// ── 生活費内訳モード切替 ──────────────────────────
+let expenseMode = 'detail';
+
+function setExpenseMode(mode) {
+  expenseMode = mode;
+  document.getElementById('expenseDetailMode').style.display = mode === 'detail' ? '' : 'none';
+  document.getElementById('expenseTotalMode').style.display  = mode === 'total'  ? '' : 'none';
+  document.getElementById('modeDetailBtn').className = 'mode-btn' + (mode === 'detail' ? ' mode-btn-active' : '');
+  document.getElementById('modeTotalBtn').className  = 'mode-btn' + (mode === 'total'  ? ' mode-btn-active' : '');
+  if (mode === 'detail') calcExpTotal();
+}
+
+function calcExpTotal() {
+  const ids = ['exp_food','exp_utility','exp_comm','exp_clothes','exp_leisure','exp_transport','exp_medical','exp_education','exp_other'];
+  const vals = ids.map(id => parseFloat(document.getElementById(id).value) || 0);
+  const total = vals.reduce((a, b) => a + b, 0);
+  const t = Math.round(total * 10) / 10;
+  document.getElementById('expTotalDisp').textContent = t.toFixed(1);
+  document.getElementById('monthlyExpense').value = t;
+  document.getElementById('monthlyExpenseDirect').value = t;
+
+  // プログレスバー更新
+  const barIds = ['expBarFood','expBarUtility','expBarComm','expBarClothes','expBarLeisure','expBarTransport','expBarMedical','expBarEducation','expBarOther'];
+  barIds.forEach((bid, i) => {
+    const pct = total > 0 ? (vals[i] / total * 100).toFixed(1) : 0;
+    document.getElementById(bid).style.width = pct + '%';
+    document.getElementById(bid).title = ids[i].replace('exp_','') + ': ' + vals[i].toFixed(1) + '万円 (' + pct + '%)';
+  });
+}
+
+function syncDirectTotal() {
+  const v = parseFloat(document.getElementById('monthlyExpenseDirect').value) || 0;
+  document.getElementById('monthlyExpense').value = v;
 }
 
 function calcMortgage(principal, annualRate, years) {
@@ -1092,6 +1286,7 @@ function runSimulation() {
 // 初期化
 toggleDualFields();
 updateChildFields();
+calcExpTotal();
 </script>
 </body>
 </html>
