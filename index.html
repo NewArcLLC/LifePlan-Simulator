@@ -324,9 +324,361 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
 @media(max-width:400px){
   .form-grid,.form-grid-3,.metrics{grid-template-columns:1fr}
 }
+
+/* ======== ログイン画面 ======== */
+#loginOverlay{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  padding:1.5rem;
+}
+.login-bg-deco{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(255,255,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 90% 80%, rgba(255,255,255,0.04) 0%, transparent 60%);
+  pointer-events:none;
+}
+.login-card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.3);
+  padding:2.5rem 2rem 2rem;
+  width:100%;max-width:420px;
+  position:relative;
+}
+.login-logo{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:2rem;
+  padding-bottom:1.5rem;
+  border-bottom:1px solid var(--border);
+}
+.login-logo-icon{
+  width:48px;height:48px;
+  background:var(--accent);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  box-shadow:0 4px 12px rgba(30,77,140,0.3);
+  flex-shrink:0;
+}
+.login-app-name{
+  font-family:'DM Serif Display',serif;
+  font-size:1.2rem;color:var(--accent);
+}
+.login-app-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.login-fields{display:flex;flex-direction:column;gap:1.1rem;margin-bottom:1.25rem}
+.login-field-group{display:flex;flex-direction:column;gap:5px}
+.login-label{font-size:11px;font-weight:700;color:var(--text2)}
+.login-input{
+  width:100%;padding:10px 13px;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);
+  background:var(--bg);
+  color:var(--text);font-size:14px;font-family:inherit;
+  transition:border-color .15s,box-shadow .15s;
+}
+.login-input:focus{
+  outline:none;border-color:var(--accent-mid);
+  box-shadow:0 0 0 3px rgba(58,114,192,.12);background:#fff;
+}
+.login-pw-wrap{position:relative}
+.login-pw-wrap .login-input{padding-right:42px}
+.login-eye{
+  position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;
+  color:var(--text3);padding:4px;
+  display:flex;align-items:center;
+}
+.login-eye:hover{color:var(--accent)}
+.login-hint-pw{font-size:10px;color:var(--text3)}
+.login-err{
+  background:var(--ng-bg);color:var(--ng);
+  border:1px solid #f0a0a0;border-radius:var(--radius-sm);
+  padding:8px 12px;font-size:12px;font-weight:500;
+}
+.login-btn{
+  width:100%;padding:12px;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:var(--radius-sm);
+  font-size:14px;font-weight:700;font-family:inherit;
+  cursor:pointer;transition:all .15s;
+  box-shadow:0 4px 12px rgba(30,77,140,0.25);
+}
+.login-btn:hover{background:#163d72;box-shadow:0 6px 16px rgba(30,77,140,.35);transform:translateY(-1px)}
+.login-btn:active{transform:none}
+.login-manual-link{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  width:100%;padding:8px;
+  background:none;border:none;
+  font-size:12px;color:var(--text3);font-family:inherit;
+  cursor:pointer;transition:color .15s;
+  text-decoration:underline;text-underline-offset:2px;
+}
+.login-manual-link:hover{color:var(--accent)}
+
+/* ======== マニュアルモーダル ======== */
+#manualOverlay{
+  position:fixed;inset:0;z-index:10000;
+  background:rgba(10,20,40,0.55);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:1.5rem 1rem;
+  overflow-y:auto;
+}
+.manual-modal{
+  background:#fff;
+  border-radius:14px;
+  width:100%;max-width:680px;
+  box-shadow:0 24px 64px rgba(0,0,0,0.35);
+  overflow:hidden;
+  margin:auto;
+}
+.manual-header{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--accent);color:#fff;
+  padding:1rem 1.5rem;
+}
+.manual-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:700;
+}
+.manual-close{
+  background:rgba(255,255,255,0.15);border:none;
+  width:32px;height:32px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:#fff;transition:background .15s;
+}
+.manual-close:hover{background:rgba(255,255,255,0.25)}
+.manual-body{padding:1.5rem;display:flex;flex-direction:column;gap:1.25rem;max-height:80vh;overflow-y:auto}
+.manual-section{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.manual-sec-title{
+  background:var(--surface2);
+  padding:.65rem 1rem;
+  font-size:12px;font-weight:700;color:var(--text);
+  border-bottom:1px solid var(--border);
+}
+.manual-sec-body{padding:.85rem 1rem;font-size:13px;color:var(--text2);line-height:1.7}
+.manual-item{
+  display:flex;gap:12px;align-items:baseline;
+  padding:5px 0;border-bottom:1px solid var(--border);
+}
+.manual-item:last-child{border-bottom:none}
+.manual-key{font-size:11px;font-weight:700;color:var(--text3);min-width:90px;flex-shrink:0}
+.manual-val{font-weight:700;color:var(--accent)}
+.manual-note{
+  font-size:11px;color:var(--text3);
+  background:var(--accent-light);
+  border-radius:var(--radius-sm);
+  padding:6px 10px;margin-top:.5rem;
+  border-left:3px solid var(--accent-mid);
+}
+.manual-step-list{display:flex;flex-direction:column;gap:8px}
+.manual-step{display:flex;gap:10px;align-items:flex-start}
+.manual-step-num{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  font-size:11px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.manual-core-list{
+  display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;
+  margin-top:.5rem;
+}
+.manual-core-item{
+  display:flex;align-items:center;gap:7px;
+  font-size:12px;color:var(--text);
+}
+.manual-core-num{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--warn-bg);color:var(--warn);
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.manual-result-list{display:flex;flex-direction:column;gap:8px}
+.manual-result-item{display:flex;gap:10px;align-items:flex-start;font-size:12px}
+.manual-result-badge{
+  padding:3px 10px;border-radius:999px;
+  font-size:11px;font-weight:700;white-space:nowrap;
+  flex-shrink:0;
+}
+.manual-result-badge.ok{background:var(--ok-bg);color:var(--ok)}
+.manual-result-badge.warn{background:var(--warn-bg);color:var(--warn)}
+.manual-result-badge.ng{background:var(--ng-bg);color:var(--ng)}
+.manual-feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.manual-feature{
+  display:flex;gap:8px;align-items:flex-start;
+  background:var(--surface2);border-radius:var(--radius-sm);
+  padding:8px 10px;font-size:11px;
+}
+.mf-icon{font-size:18px;flex-shrink:0;line-height:1}
+.mf-txt{color:var(--text2);line-height:1.5}
+.manual-fp-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:9px 20px;margin-top:.75rem;
+  background:var(--accent);color:#fff;
+  border-radius:var(--radius-sm);
+  font-size:13px;font-weight:700;
+  text-decoration:none;
+  transition:background .15s;
+}
+.manual-fp-btn:hover{background:#163d72}
+@media(max-width:480px){
+  .manual-core-list,.manual-feature-grid{grid-template-columns:1fr}
+  .login-card{padding:1.75rem 1.25rem 1.5rem}
+}
 </style>
 </head>
 <body>
+
+<!-- ======== ログイン画面 ======== -->
+<div id="loginOverlay">
+  <div class="login-bg-deco"></div>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="login-logo-icon">🏠</div>
+      <div class="login-logo-text">
+        <div class="login-app-name">LifePlan Simulator</div>
+        <div class="login-app-sub">NewArc LLC — 不動産営業支援ツール</div>
+      </div>
+    </div>
+
+    <div class="login-fields">
+      <div class="login-field-group">
+        <label class="login-label">ログインID</label>
+        <input type="text" id="loginId" class="login-input" placeholder="ログインIDを入力" autocomplete="username" oninput="clearLoginErr()">
+      </div>
+      <div class="login-field-group">
+        <label class="login-label">パスワード</label>
+        <div class="login-pw-wrap">
+          <input type="password" id="loginPw" class="login-input" placeholder="" autocomplete="current-password" oninput="clearLoginErr()" onkeydown="if(event.key==='Enter')doLogin()">
+          <button class="login-eye" onclick="togglePw()" id="eyeBtn" title="表示/非表示">
+            <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <span class="login-hint-pw">パスワードは本日の西暦年月日（例：20260322）</span>
+      </div>
+      <div id="loginErr" class="login-err" style="display:none">IDまたはパスワードが正しくありません</div>
+      <button class="login-btn" onclick="doLogin()">ログイン</button>
+    </div>
+
+    <button class="login-manual-link" onclick="openManual()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      操作マニュアルを見る
+    </button>
+  </div>
+</div>
+
+<!-- ======== マニュアルモーダル ======== -->
+<div id="manualOverlay" style="display:none">
+  <div class="manual-modal">
+    <div class="manual-header">
+      <div class="manual-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        操作マニュアル
+      </div>
+      <button class="manual-close" onclick="closeManual()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="manual-body">
+
+      <div class="manual-section">
+        <div class="manual-sec-title">🔐 ログイン方法</div>
+        <div class="manual-sec-body">
+          <div class="manual-item"><span class="manual-key">ログインID</span><span class="manual-val">NewArcLLC</span></div>
+          <div class="manual-item"><span class="manual-key">パスワード</span><span class="manual-val">本日の西暦年月日（例：20260322）</span></div>
+          <div class="manual-note">パスワードは毎日変わります。当日の日付を8桁で入力してください。</div>
+        </div>
+      </div>
+
+      <div class="manual-section">
+        <div class="manual-sec-title">📋 基本的な使い方</div>
+        <div class="manual-sec-body">
+          <div class="manual-step-list">
+            <div class="manual-step"><div class="manual-step-num">1</div><div><strong>STEP 1 基本情報</strong>を入力 — 世帯主・配偶者の年齢、子どもの人数、働き方を選択</div></div>
+            <div class="manual-step"><div class="manual-step-num">2</div><div><strong>STEP 2 収入</strong>を入力 — 手取り年収・ボーナス・年金見込みを入力。物価・給与上昇率はデフォルト（2%/1%）のまま使用可</div></div>
+            <div class="manual-step"><div class="manual-step-num">3</div><div><strong>STEP 3 家計・貯蓄</strong>を入力 — 住宅費・生活費の内訳または合計、現在の貯蓄残高を入力</div></div>
+            <div class="manual-step"><div class="manual-step-num">4</div><div><strong>STEP 4 住宅条件</strong>を入力 — 物件価格・頭金・借入期間・金利を入力</div></div>
+            <div class="manual-step"><div class="manual-step-num">5</div><div><strong>STEP 5 教育・車</strong>を入力 — 教育方針（公立/私立）、車の買い替えサイクルを設定</div></div>
+            <div class="manual-step"><div class="manual-step-num">6</div><div><strong>STEP 6 保険・ローン</strong>を入力 — 保険料・その他ローン・年間イベント費を入力</div></div>
+            <div class="manual-step"><div class="manual-step-num">✓</div><div><strong>シミュレーション実行</strong>ボタンを押すと結果が表示されます</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="manual-section">
+        <div class="manual-sec-title">⚡ 商談での5分入力のコツ</div>
+        <div class="manual-sec-body">
+          <div class="manual-note">以下の<strong>コア10項目</strong>だけ入力すれば最低限のシミュレーションが実行できます。</div>
+          <div class="manual-core-list">
+            <div class="manual-core-item"><span class="manual-core-num">①</span>世帯主の年齢</div>
+            <div class="manual-core-item"><span class="manual-core-num">②</span>子どもの人数・年齢</div>
+            <div class="manual-core-item"><span class="manual-core-num">③</span>共働き／片働きの選択</div>
+            <div class="manual-core-item"><span class="manual-core-num">④</span>世帯主の手取り年収</div>
+            <div class="manual-core-item"><span class="manual-core-num">⑤</span>現在の金融資産（貯蓄）</div>
+            <div class="manual-core-item"><span class="manual-core-num">⑥</span>月間生活費の合計</div>
+            <div class="manual-core-item"><span class="manual-core-num">⑦</span>希望物件価格</div>
+            <div class="manual-core-item"><span class="manual-core-num">⑧</span>頭金の額</div>
+            <div class="manual-core-item"><span class="manual-core-num">⑨</span>借入期間・金利</div>
+            <div class="manual-core-item"><span class="manual-core-num">⑩</span>教育方針（公立/私立）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="manual-section">
+        <div class="manual-sec-title">📊 結果画面の見方</div>
+        <div class="manual-sec-body">
+          <div class="manual-result-list">
+            <div class="manual-result-item">
+              <div class="manual-result-badge ok">✅ 緑</div>
+              <div>90歳まで貯蓄がプラスを維持できる見込み。安心して提案できる状態</div>
+            </div>
+            <div class="manual-result-item">
+              <div class="manual-result-badge warn">⚡ 黄</div>
+              <div>プラスは維持できるが余裕が少ない。返済額・頭金・節約について追加提案を検討</div>
+            </div>
+            <div class="manual-result-item">
+              <div class="manual-result-badge ng">⚠️ 赤</div>
+              <div>途中で貯蓄がマイナスになる見込み。頭金増額・返済期間延長・収入見直しを提案</div>
+            </div>
+          </div>
+          <div class="manual-note" style="margin-top:.75rem">住宅ローン残高グラフで完済時期と資産残高の交差点を確認し、繰上返済の余地を確認できます。</div>
+        </div>
+      </div>
+
+      <div class="manual-section">
+        <div class="manual-sec-title">🔑 主な機能一覧</div>
+        <div class="manual-sec-body">
+          <div class="manual-feature-grid">
+            <div class="manual-feature"><div class="mf-icon">👨‍👩‍👧</div><div class="mf-txt"><strong>家族構成</strong>子ども最大3人・出産予定・将来の共働き切替に対応</div></div>
+            <div class="manual-feature"><div class="mf-icon">💰</div><div class="mf-txt"><strong>収入管理</strong>共働き/片働き切替・65歳で自動的に年金収入へ移行</div></div>
+            <div class="manual-feature"><div class="mf-icon">🏠</div><div class="mf-txt"><strong>住宅ローン</strong>15〜50年・金利設定・残高グラフで完済まで可視化</div></div>
+            <div class="manual-feature"><div class="mf-icon">🎓</div><div class="mf-txt"><strong>教育費</strong>公立/私立/私立中心の3パターン。子の独立で生活費8%自動削減</div></div>
+            <div class="manual-feature"><div class="mf-icon">📅</div><div class="mf-txt"><strong>年間イベント費</strong>旅行・冠婚葬祭・帰省など9項目の内訳入力に対応</div></div>
+            <div class="manual-feature"><div class="mf-icon">📈</div><div class="mf-txt"><strong>CF表</strong>90歳まで年次キャッシュフロー表・グラフで一覧表示</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="manual-section">
+        <div class="manual-sec-title">📞 FP相談・サポート</div>
+        <div class="manual-sec-body">
+          <div class="manual-note">より詳細なライフプランを作成したい場合は、FP相談をご利用ください。</div>
+          <a href="https://calendar.app.google/RKKe6Uj6B9ew7x7Q7" target="_blank" rel="noopener noreferrer" class="manual-fp-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            FP相談を予約する
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ======== メインアプリ（ログイン後に表示） ======== -->
+<div id="mainApp" style="display:none">
 
 <header class="header">
   <div class="header-icon">🏠</div>
@@ -1058,7 +1410,8 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
     </div>
   </div>
 
-</div>
+</div><!-- end .container -->
+</div><!-- end #mainApp -->
 
 <script>
 let currentStep = 0;
@@ -1651,6 +2004,59 @@ function runSimulation() {
     });
   }
 } // end runSimulation
+
+// ── ログイン ──────────────────────────────────────
+function doLogin() {
+  const id = document.getElementById('loginId').value.trim();
+  const pw = document.getElementById('loginPw').value.trim();
+  const today = new Date();
+  const ymd = today.getFullYear().toString()
+    + String(today.getMonth() + 1).padStart(2, '0')
+    + String(today.getDate()).padStart(2, '0');
+  const err = document.getElementById('loginErr');
+  if (id === 'NewArcLLC' && pw === ymd) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('mainApp').style.display = 'block';
+  } else {
+    err.style.display = 'block';
+    document.getElementById('loginPw').value = '';
+    document.getElementById('loginPw').focus();
+  }
+}
+
+function clearLoginErr() {
+  document.getElementById('loginErr').style.display = 'none';
+}
+
+function togglePw() {
+  const pw = document.getElementById('loginPw');
+  const icon = document.getElementById('eyeIcon');
+  if (pw.type === 'password') {
+    pw.type = 'text';
+    icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>';
+  } else {
+    pw.type = 'password';
+    icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  }
+}
+
+function openManual() {
+  document.getElementById('manualOverlay').style.display = 'flex';
+}
+
+function closeManual() {
+  document.getElementById('manualOverlay').style.display = 'none';
+}
+
+// マニュアル背景クリックで閉じる
+document.getElementById('manualOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeManual();
+});
+
+// Enterキーでログイン
+document.getElementById('loginId').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') document.getElementById('loginPw').focus();
+});
 
 // 初期化
 toggleDualFields();
