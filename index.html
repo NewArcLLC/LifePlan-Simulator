@@ -216,6 +216,9 @@ tbody tr.row-event td{background:var(--accent-light);color:var(--accent);font-we
 tbody tr.row-negative td{color:var(--ng)!important;background:var(--ng-bg)}
 tbody tr.row-pension td{color:var(--warn)!important}
 tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng-bg)}
+/* 画面では間引き行を非表示、印刷では全行表示 */
+tbody tr.screen-only-hide{display:none}
+@media print{tbody tr.screen-only-hide{display:table-row !important}}
 
 .assumption-bar{
   background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);
@@ -312,9 +315,200 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
 }
 
 @media print{
-  .step-nav,.btn-row,.header{display:none!important}
-  .section{display:block!important}
-  body{background:#fff}
+  /* ── 基本リセット ── */
+  *{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+    box-shadow:none !important;
+  }
+  html,body{
+    background:#fff !important;
+    margin:0;padding:0;
+    font-size:11px;
+    width:100%;
+  }
+
+  /* ── 非表示にするUI要素 ── */
+  #loginOverlay,
+  .step-nav,
+  .btn-row,
+  .fp-btn,
+  .sec-header,
+  .exp-bar-wrap,
+  .exp-legend-row,
+  .ev-bar-wrap,
+  .ev-legend-row,
+  .mode-btn,
+  #expenseDetailMode,
+  #expenseTotalMode,
+  #evDetailMode,
+  #evTotalMode,
+  .header { display:none !important; }
+
+  /* ── メインアプリを表示 ── */
+  #mainApp{ display:block !important; }
+
+  /* ── 結果セクション以外を非表示 ── */
+  #sec0,#sec1,#sec2,#sec3,#sec4,#sec5{ display:none !important; }
+
+  /* ── 結果セクションを表示 ── */
+  #sec6{
+    display:block !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:none !important;
+    box-shadow:none !important;
+  }
+
+  /* ── コンテナ・ページ設定 ── */
+  .container{
+    max-width:100% !important;
+    padding:0 !important;
+    margin:0 !important;
+  }
+
+  /* ── 印刷ヘッダー ── */
+  #printHeader{
+    display:flex !important;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 0 8px;
+    border-bottom:2px solid #1e4d8c;
+    margin-bottom:12px;
+  }
+  #printHeader .ph-title{
+    font-family:'DM Serif Display',serif;
+    font-size:15px;color:#1e4d8c;font-weight:700;
+  }
+  #printHeader .ph-sub{font-size:9px;color:#888;margin-top:2px}
+  #printHeader .ph-date{font-size:10px;color:#555;text-align:right}
+
+  /* ── カード・チャートカード ── */
+  .card,.chart-card{
+    border:1px solid #ddd !important;
+    border-radius:6px !important;
+    padding:10px 12px !important;
+    margin-bottom:10px !important;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .card-title{
+    font-size:11px !important;
+    padding-bottom:6px !important;
+    margin-bottom:8px !important;
+  }
+
+  /* ── 判定バー ── */
+  .verdict{
+    padding:8px 12px !important;
+    font-size:11px !important;
+    margin-bottom:8px !important;
+  }
+
+  /* ── 前提条件バー ── */
+  .assumption-bar{
+    padding:6px 10px !important;
+    font-size:9px !important;
+    margin-bottom:8px !important;
+    flex-wrap:wrap;
+    gap:8px !important;
+  }
+
+  /* ── メトリクス3列 ── */
+  .metrics{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:8px !important;
+    margin-bottom:10px !important;
+  }
+  .metric{
+    padding:8px 10px !important;
+    border:1px solid #ddd !important;
+  }
+  .metric-value{font-size:16px !important}
+  .metric-label{font-size:9px !important}
+  .metric-sub{font-size:9px !important}
+
+  /* ── チャートのキャンバス ── */
+  #chartWrap{
+    height:200px !important;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  #mtgChartWrap{
+    height:180px !important;
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+  .chart-title{font-size:11px !important;margin-bottom:4px !important}
+  .chart-legend{font-size:9px !important;margin-bottom:6px !important}
+  .legend-dot{width:8px !important;height:8px !important}
+
+  /* ── ローンサマリー ── */
+  .mtg-summary-row{
+    grid-template-columns:repeat(4,1fr) !important;
+    gap:6px !important;
+    margin-bottom:8px !important;
+  }
+  .mtg-sum-item{padding:6px 8px !important}
+  .mtg-sum-label{font-size:9px !important}
+  .mtg-sum-val{font-size:13px !important}
+  .mtg-progress-track{height:10px !important}
+  #mtgProgressWrap{margin:6px 0 4px !important}
+
+  /* ── イベントチップ ── */
+  .events-wrap{margin-bottom:6px !important}
+  .ev-chip{font-size:9px !important;padding:2px 7px !important}
+
+  /* ── テーブル：見切れ・スクロール解除・全行表示 ── */
+  .table-wrap{
+    overflow:visible !important;
+    max-height:none !important;
+    overflow-x:visible !important;
+    overflow-y:visible !important;
+    border:none !important;
+    border-radius:0 !important;
+  }
+  table{
+    width:100% !important;
+    font-size:9px !important;
+    border-collapse:collapse !important;
+    page-break-inside:auto;
+  }
+  thead th{
+    position:static !important;
+    background:#1e4d8c !important;
+    color:#fff !important;
+    padding:5px 6px !important;
+    font-size:9px !important;
+  }
+  tbody td{
+    padding:4px 6px !important;
+    border-bottom:0.5px solid #e0e0e0 !important;
+    font-size:9px !important;
+  }
+  tbody tr{page-break-inside:avoid;break-inside:avoid}
+
+  /* ── ページ区切り制御 ── */
+  .chart-card:nth-of-type(2){page-break-before:auto}
+  .chart-card:last-of-type{page-break-before:auto}
+
+  /* ── ローン残高行の色（印刷時は背景色なし） ── */
+  tbody tr.row-negative td{
+    color:#8a1c1c !important;
+    background:none !important;
+  }
+  tbody tr.row-event td{
+    background:#e8eef7 !important;
+    color:#1e4d8c !important;
+  }
+  tbody tr.row-pension td{color:#8a5a00 !important}
+
+  /* ── ページサイズ・余白 ── */
+  @page{
+    size:A4 portrait;
+    margin:12mm 10mm 12mm 10mm;
+  }
 }
 @media(max-width:600px){
   .form-grid,.form-grid-3,.metrics{grid-template-columns:1fr 1fr}
@@ -1538,11 +1732,11 @@ function runSimulation() {
 
   let tableHTML = '';
   rows.forEach((r, idx) => {
-    const show = idx === 0 || idx === rows.length - 1 || r.isEvent || (r.isPension && r.age === 65) || idx % 5 === 0;
-    if (!show) return;
     const evLabel = events[r.y] ? ` ${events[r.y].join(' ')}` : '';
     let cls = r.assets < 0 ? 'row-negative' : (r.isPension && r.age === 65) ? 'row-pension' : r.isEvent ? 'row-event' : '';
-    tableHTML += `<tr class="${cls}">
+    // 画面表示は間引き（5年おき＋イベント年）、印刷では全行表示のためdata属性で制御
+    const hide = !(idx === 0 || idx === rows.length - 1 || r.isEvent || (r.isPension && r.age === 65) || idx % 5 === 0);
+    tableHTML += `<tr class="${cls}${hide ? ' screen-only-hide' : ''}">
       <td>${r.age}歳${evLabel}</td>
       <td>${fmt(r.income)}</td>
       <td>${fmt(r.expense)}</td>
@@ -1553,6 +1747,17 @@ function runSimulation() {
   });
 
   document.getElementById('resultArea').innerHTML = `
+    <div id="printHeader" style="display:none">
+      <div>
+        <div class="ph-title">簡易ライフプランシミュレーター</div>
+        <div class="ph-sub">NewArc LLC — 不動産営業支援ツール</div>
+      </div>
+      <div class="ph-date">
+        ${new Date().toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric'})} ${new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'})}<br>
+        借入${fmt(loanAmount)}万円・${rate}% / ${loanTerm}年<br>
+        現在 ${fmt(nv('savings'))}万円 → 90歳時点 ${fmt(finalAssets)}万円
+      </div>
+    </div>
     <div class="verdict ${verdictClass}"><span class="verdict-icon">${verdictIcon}</span><div>${verdictMsg}</div></div>
     ${assumpBar}
     <div class="metrics">
