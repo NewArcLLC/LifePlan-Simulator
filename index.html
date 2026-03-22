@@ -834,19 +834,21 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
     </div>
   </div>
 
-  <!-- ======== STEP 5: 保険・ローン ======== -->
+  <!-- ======== STEP 5: 保険・ローン・年間費用 ======== -->
   <div class="section" id="sec5">
     <div class="sec-header">
       <div class="sec-header-num">6</div>
       <div>
-        <div class="sec-header-title">保険・その他ローン</div>
-        <div class="sec-header-desc">固定的な支出を確認します</div>
+        <div class="sec-header-title">保険・ローン・年間特別費用</div>
+        <div class="sec-header-desc">固定的な支出と年間イベント費用を確認します</div>
       </div>
     </div>
+
+    <!-- 保険・ローンカード（既存） -->
     <div class="card">
       <div class="card-title">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        固定的支出 <span class="badge badge-req">必須</span>
+        保険・ローン <span class="badge badge-req">必須</span>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -859,7 +861,6 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
           <input type="number" id="otherLoan" value="2" min="0">
           <span class="hint">自動車・教育・カードローンなど</span>
         </div>
-        <!-- ★ その他ローン終了年 -->
         <div class="form-group fg-full">
           <label>その他ローンの返済終了時期</label>
           <select id="otherLoanEndYear">
@@ -884,6 +885,121 @@ tbody tr.row-event.row-negative td{color:var(--ng)!important;background:var(--ng
         </div>
       </div>
     </div>
+
+    <!-- 年間特別費用カード（新規） -->
+    <div class="card">
+      <div class="card-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        年間イベント・特別費用 <span class="badge badge-opt">任意</span>
+        <span style="margin-left:auto;font-size:11px;font-weight:400;color:var(--text3)">物価上昇率が毎年適用されます</span>
+      </div>
+
+      <!-- 入力モード切替 -->
+      <div style="display:flex;gap:6px;margin-bottom:1rem;">
+        <button id="evModeDetailBtn" class="mode-btn mode-btn-active" onclick="setEvMode('detail')">内訳を入力する</button>
+        <button id="evModeTotalBtn"  class="mode-btn" onclick="setEvMode('total')">合計だけ入力する</button>
+      </div>
+
+      <!-- 内訳モード -->
+      <div id="evDetailMode">
+        <div class="expense-grid">
+          <div class="exp-row">
+            <span class="exp-icon">✈️</span>
+            <span class="exp-label">旅行・レジャー</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_travel" value="20" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">💒</span>
+            <span class="exp-label">冠婚葬祭・ご祝儀</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_ceremony" value="10" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🏠</span>
+            <span class="exp-label">帰省・交通費（年間）</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_homecoming" value="5" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🎂</span>
+            <span class="exp-label">誕生日・記念日・プレゼント</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_anniversary" value="5" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🎄</span>
+            <span class="exp-label">年末年始・季節イベント</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_seasonal" value="5" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🎾</span>
+            <span class="exp-label">趣味・スポーツ用品</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_hobby" value="3" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🏥</span>
+            <span class="exp-label">健康診断・人間ドック</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_health" value="2" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">🛋️</span>
+            <span class="exp-label">家具・家電の買い替え</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_furniture" value="3" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+          <div class="exp-row">
+            <span class="exp-icon">📝</span>
+            <span class="exp-label">その他イベント・雑費</span>
+            <div class="exp-input-wrap"><input type="number" id="ev_misc" value="2" min="0" step="0.5" oninput="calcEvTotal()"><span class="exp-unit">万円/年</span></div>
+          </div>
+        </div>
+
+        <!-- 合計バー -->
+        <div class="exp-total-bar">
+          <div class="exp-total-left">
+            <span class="exp-total-label">年間イベント費 合計</span>
+            <span class="exp-total-hint">（物価上昇率が毎年適用されます）</span>
+          </div>
+          <div class="exp-total-right">
+            <span id="evTotalDisp" class="exp-total-num">55.0</span>
+            <span class="exp-total-unit">万円/年</span>
+          </div>
+        </div>
+        <div class="exp-bar-wrap">
+          <div id="evBarTravel"      class="exp-bar-seg" style="background:#185FA5" title="旅行"></div>
+          <div id="evBarCeremony"    class="exp-bar-seg" style="background:#6b3a8c" title="冠婚葬祭"></div>
+          <div id="evBarHomecoming"  class="exp-bar-seg" style="background:#0F6E56" title="帰省"></div>
+          <div id="evBarAnniversary" class="exp-bar-seg" style="background:#c04a1e" title="記念日"></div>
+          <div id="evBarSeasonal"    class="exp-bar-seg" style="background:#8a5a00" title="季節イベント"></div>
+          <div id="evBarHobby"       class="exp-bar-seg" style="background:#3a72c0" title="趣味"></div>
+          <div id="evBarHealth"      class="exp-bar-seg" style="background:#8a1c1c" title="健康診断"></div>
+          <div id="evBarFurniture"   class="exp-bar-seg" style="background:#4a6e1c" title="家具家電"></div>
+          <div id="evBarMisc"        class="exp-bar-seg" style="background:#9b9590" title="その他"></div>
+        </div>
+        <div class="exp-legend-row">
+          <span class="exp-legend-item"><span style="background:#185FA5"></span>旅行</span>
+          <span class="exp-legend-item"><span style="background:#6b3a8c"></span>冠婚葬祭</span>
+          <span class="exp-legend-item"><span style="background:#0F6E56"></span>帰省</span>
+          <span class="exp-legend-item"><span style="background:#c04a1e"></span>記念日</span>
+          <span class="exp-legend-item"><span style="background:#8a5a00"></span>季節行事</span>
+          <span class="exp-legend-item"><span style="background:#3a72c0"></span>趣味</span>
+          <span class="exp-legend-item"><span style="background:#8a1c1c"></span>健康診断</span>
+          <span class="exp-legend-item"><span style="background:#4a6e1c"></span>家具家電</span>
+          <span class="exp-legend-item"><span style="background:#9b9590"></span>その他</span>
+        </div>
+      </div>
+
+      <!-- 合計のみモード -->
+      <div id="evTotalMode" style="display:none">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>年間イベント費 合計（万円）</label>
+            <input type="number" id="annualEventsDirect" value="55" min="0" step="1" oninput="syncEvDirect()">
+            <span class="hint">旅行・冠婚葬祭・帰省・趣味など年間でかかる費用の合計</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 隠しフィールド -->
+      <input type="hidden" id="annualEvents" value="55">
+    </div>
+
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="goStep(4)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 戻る</button>
       <button class="btn btn-run" onclick="goStep(6)">
@@ -979,6 +1095,35 @@ function syncDirectTotal() {
   document.getElementById('monthlyExpense').value = v;
 }
 
+// ── 年間イベント費内訳 ─────────────────────────────
+function setEvMode(mode) {
+  document.getElementById('evDetailMode').style.display = mode === 'detail' ? '' : 'none';
+  document.getElementById('evTotalMode').style.display  = mode === 'total'  ? '' : 'none';
+  document.getElementById('evModeDetailBtn').className = 'mode-btn' + (mode === 'detail' ? ' mode-btn-active' : '');
+  document.getElementById('evModeTotalBtn').className  = 'mode-btn' + (mode === 'total'  ? ' mode-btn-active' : '');
+  if (mode === 'detail') calcEvTotal();
+}
+
+function calcEvTotal() {
+  const ids = ['ev_travel','ev_ceremony','ev_homecoming','ev_anniversary','ev_seasonal','ev_hobby','ev_health','ev_furniture','ev_misc'];
+  const barIds = ['evBarTravel','evBarCeremony','evBarHomecoming','evBarAnniversary','evBarSeasonal','evBarHobby','evBarHealth','evBarFurniture','evBarMisc'];
+  const vals = ids.map(id => parseFloat(document.getElementById(id).value) || 0);
+  const total = vals.reduce((a, b) => a + b, 0);
+  const t = Math.round(total * 10) / 10;
+  document.getElementById('evTotalDisp').textContent = t.toFixed(1);
+  document.getElementById('annualEvents').value = t;
+  document.getElementById('annualEventsDirect').value = t;
+  barIds.forEach((bid, i) => {
+    const pct = total > 0 ? (vals[i] / total * 100).toFixed(1) : 0;
+    document.getElementById(bid).style.width = pct + '%';
+  });
+}
+
+function syncEvDirect() {
+  const v = parseFloat(document.getElementById('annualEventsDirect').value) || 0;
+  document.getElementById('annualEvents').value = v;
+}
+
 function calcMortgage(principal, annualRate, years) {
   if (principal <= 0) return 0;
   if (annualRate === 0) return principal / (years * 12);
@@ -1048,7 +1193,8 @@ function runSimulation() {
   const carCycle       = parseInt(v('carCycle').value) || 7;
   const insurance      = nv('insurance');
   const otherLoan      = nv('otherLoan');
-  const otherLoanEndY  = parseInt(v('otherLoanEndYear').value) || 999; // ★
+  const otherLoanEndY  = parseInt(v('otherLoanEndYear').value) || 999;
+  const annualEvents   = nv('annualEvents'); // ★ 年間イベント費
 
   // ★ 子ども独立年齢
   const independAge = uni === 'yes' ? 22 : 18;
@@ -1151,7 +1297,10 @@ function runSimulation() {
     const loan = y < otherLoanEndY ? otherLoan * 12 : 0;
     if (y === otherLoanEndY) addEvent(y, '💳 その他ローン完済');
 
-    const totalExpense = livingExpense + housingCost + edu + ins + loan + carCost;
+    // ★ 年間イベント費（物価上昇率適用）
+    const evCost = annualEvents * inf;
+
+    const totalExpense = livingExpense + housingCost + edu + ins + loan + carCost + evCost;
 
     // CF = 給与収入 + 月次積立上乗せ - 総支出
     const cf = income + extraSavings - totalExpense;
@@ -1218,6 +1367,7 @@ function runSimulation() {
       <div class="assm-item"><span class="assm-key">子独立後生活費</span><span class="assm-val">1人▲8%</span></div>
       <div class="assm-item"><span class="assm-key">貯蓄上乗せ</span><span class="assm-val">65歳で停止</span></div>
       <div class="assm-item"><span class="assm-key">その他ローン</span><span class="assm-val">${loanEndLabel}</span></div>
+      <div class="assm-item"><span class="assm-key">年間イベント費</span><span class="assm-val">${fmt(annualEvents)}万円/年</span></div>
     </div>`;
 
   let tableHTML = '';
@@ -1478,6 +1628,7 @@ function runSimulation() {
 toggleDualFields();
 updateChildFields();
 calcExpTotal();
+calcEvTotal();
 </script>
 </body>
 </html>
